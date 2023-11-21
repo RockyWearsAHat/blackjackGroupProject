@@ -19,5 +19,5 @@ So far this is a simple base framework that creates a new deck if there isn't a 
 |   Current Chips: 100                         |
 |   Chips Won/Lost: +10                         |
 -----------------------------------------------
-### Desription of the wreframe
+### Desription of the wireframe
 The "Deal" button initiates the card dealing process, the "Bet" section allows the user to input their bet amount, the "Card Play" section displays the cards for both the player and the dealer, and the "Counter" section keeps track of the player's current chip count and any chips won or lost. The "Play Again" button allows the player to start a new round.
