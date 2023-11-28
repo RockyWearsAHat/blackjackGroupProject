@@ -79,6 +79,8 @@ const drawCard = async (
   }
 };
 
+const userHand = document.getElementById("player1-cards-container");
+const dealerHand = document.getElementById("dealer-cards-container");
 const addCardToHand = async (
   deck = "",
   cardCode = "",
@@ -97,6 +99,13 @@ const addCardToHand = async (
 
     if (json.success) {
       console.log(json);
+
+      if (handToAssign === users.PLAYER) {
+        let newCard = document.createElement("div");
+        newCard.innerHTML = `<img src="${}"/><img src="${}"/>`
+      } else {
+        console.log("adding to dealer");
+      }
     } else {
       return new Error("Error Adding Card To Hand");
     }
