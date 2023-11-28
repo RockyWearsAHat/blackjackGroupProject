@@ -69,6 +69,7 @@ const drawCard = async (
     const json = await res.json();
 
     if (json.success) {
+      console.log(json);
       const cardCode = json.cards[0].code;
       await addCardToHand(deck, cardCode, handToAssign);
     } else {
@@ -79,8 +80,6 @@ const drawCard = async (
   }
 };
 
-const userHand = document.getElementById("player1-cards-container");
-const dealerHand = document.getElementById("dealer-cards-container");
 const addCardToHand = async (
   deck = "",
   cardCode = "",
@@ -98,13 +97,8 @@ const addCardToHand = async (
     const json = await res.json();
 
     if (json.success) {
-      console.log(json);
-
-      if (handToAssign === users.PLAYER) {
-        let newCard = document.createElement("div");
-        newCard.innerHTML = `<img src="${}"/><img src="${}"/>`
-      } else {
-        console.log("adding to dealer");
+      if (handToAssign == users.PLAYER) {
+        getUserHand(deck, handToAssign);
       }
     } else {
       return new Error("Error Adding Card To Hand");
@@ -114,6 +108,8 @@ const addCardToHand = async (
   }
 };
 
+const userHand = document.getElementById("player1-cards-container");
+const dealerHand = document.getElementById("dealer-cards-container");
 const getUserHand = async (deck = "", user = users) => {
   if (!deck || !user) {
     return new Error("Error Getting Hand, DECK ID AND USER MUST BE DECLARED");
@@ -126,6 +122,47 @@ const getUserHand = async (deck = "", user = users) => {
 
     if (json.success) {
       console.log(json);
+      if (user == users.PLAYER) {
+        const li = document.createElement("li");
+        li.id = `playerCard${json.piles.player.cards.length - 1}`;
+        li.classList = "card hidden";
+        li.innerHTML = `<img src="https://www.deckofcardsapi.com/static/img/back.png" class="cardBack"/><img src="${
+          json.piles.player.cards[json.piles.player.cards.length - 1].image
+        }" class="cardFront"/>`;
+        userHand.appendChild(li);
+
+        gsap.utils.toArray(".card").forEach(function (card) {
+          gsap.set(card, {
+            transformStyle: "preserve-3d",
+            transformPerspective: 1000,
+          });
+          const q = gsap.utils.selector(card);
+          const front = q(".cardFront");
+          const back = q(".cardBack");
+
+          gsap.set(back, { rotationY: -180 });
+
+          const tl = gsap
+            .timeline({ paused: true })
+            .to(front, { duration: 1, rotationY: 180 })
+            .to(back, { duration: 1, rotationY: 0 }, 0)
+            .to(card, { z: 50 }, 0)
+            .to(card, { z: 0 }, 0.5);
+          card.addEventListener("mouseenter", function () {
+            tl.play();
+          });
+          card.addEventListener("mouseleave", function () {
+            tl.reverse();
+          });
+        });
+
+        json.piles.player.cards[json.piles.player.cards.length - 1].image;
+      } else if (user == users.DEALER) {
+        console.log(json.piles.dealer.cards.length - 1);
+        console.log(
+          json.piles.dealer.cards[json.piles.dealer.cards.length - 1].image
+        );
+      }
     } else {
       return new Error("Error Getting Hand");
     }
@@ -138,7 +175,6 @@ const getHand = async (deck = "") => {};
 
 const startGame = async () => {
   const newDeck = await getNewDeck();
-  console.log(newDeck);
 
   await shuffleDeck(newDeck, false);
 
@@ -146,8 +182,6 @@ const startGame = async () => {
   await drawCard(newDeck, 1, users.DEALER);
   await drawCard(newDeck, 1, users.PLAYER);
   await drawCard(newDeck, 1, users.DEALER);
-
-  await getUserHand(newDeck, users.DEALER);
 };
 
 startGame();
