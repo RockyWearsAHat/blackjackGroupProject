@@ -14,53 +14,36 @@
         <p>Bootcamp Blackjack</p>
     </header>
 
-    <button id="deal" onclick="blinkTitle(5)">Deal</button>
-
-    <div id="table">
-        <div id="dealer-section">
-            <div id="dealer-label">DEALER:</div>
-            <div id="dealer-cards-container">
+    <main id="table">
+        <div class="player-section">
+            <div class="player-label">Hand total:<br>Dealer:</div>
+            <div class="cards-container" id="dealer-cards-container">
                 <!-- Add your dealer cards from API here -->
-                <div class="dealer-card">Card 1</div>
-                <div class="dealer-card">Card 2</div>
-                <div class="dealer-card">Card 3</div>
-                <div class="dealer-card">Card 4</div>
-                <div class="dealer-card">Card 5</div>
-                <div class="dealer-card">Card 6</div>
+                <div class="card">Card 1</div>
+                <div class="card">Card 1</div>
                 <!-- Add more cards as needed -->
             </div>
         </div>
 
-        <div id="play">
-            <div id="play-button-container">
-                <button id="hit-button">Hit</button>
-                <button id="stand-button">Stand</button>
-            </div>
+        <div id="play-button-container">
+            <button id="hit-button">Hit</button>
+            <div id="chip-counter">Chip Counter:<br>Win/Loss: </div>
+            <button id="stand-button">Stand</button>
         </div>
 
-
-       <div id="player1-section"> 
-                <div id="player1-label">PLAYER1:</div>
-                <div id="player1-cards-container">
-                  <!--Add your player1 cardsfrom API here-->
-                  <div class="player1-card">Card 1</div>
-                  <div class="player1-card">Card 2</div>
-                  <div class="player1-card">Card 3</div>
-                  <div class="player1-card">Card 4</div>
-                  <div class="player1-card">Card 5</div>
-                  <div class="player1-card">Card 6</div>
-                  <!--Add more cards as needed-->
-                </div>
-              </div>
-            
-        
-    </div>
-    </div>
-
-
+        <div class="player-section">
+            <!-- <div id="player1-label">Hand total:<br>PLAYER1:</div> -->
+            <div class="player-label" id="">Hand total:<br>Player:</div>
+            <div class=cards-container id="player1-cards-container">
+                <!--Add your player1 cardsfrom API here-->
+                <div class="card">Card 1</div>
+                <!--Add more cards as needed-->
+            </div>
+        </div>
+    </main>
 
     <footer>
-        <button id="play-again-button">Play Again</button>
+        <button id="play-again-button">Deal</button>
         <button id="end-game-button">End Game</button>
     </footer>
 
