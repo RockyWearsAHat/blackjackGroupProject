@@ -80,13 +80,33 @@ main > * {
 
 .card {
   display: flex;
+  justify-content: center;
+  align-items: center;
   height: 120px;
-  width: 60px;
-  border: 1px solid #ccc;
   padding: 33px;
   margin: auto;
-  background-color: rgba(55, 174, 67, 0.278);
-  background-color: #990606;
+  position: relative;
+}
+
+.card > img {
+  position: absolute;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+}
+
+.card.hidden {
+  transform: rotateY(180deg);
+}
+
+.cardFront {
+  z-index: 5;
+}
+
+.cardBack {
+  z-index: 50;
 }
 
 /* CENTRAL ELEMENTS */
