@@ -1,53 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bootcamp Blackjack</title>
-    <link rel="stylesheet" href="rouse-assets/style.css">
-</head>
+    <link rel="stylesheet" href="rouse-assets/style.css" />
+  </head>
 
-<body>
-
+  <body>
     <header>
-        <p>Bootcamp Blackjack</p>
+      <p>Bootcamp Blackjack</p>
     </header>
 
     <main id="table">
-        <div class="player-section">
-            <div class="player-label">Hand total:<br>Dealer:</div>
-            <div class="cards-container" id="dealer-cards-container">
-                <!-- Add your dealer cards from API here -->
-                <div class="card">Card 1</div>
-                <div class="card">Card 1</div>
-                <!-- Add more cards as needed -->
-            </div>
+      <div class="player-section">
+        <div class="player-label">Hand total:<br />Dealer:</div>
+        <div class="cards-container" id="dealer-cards-container">
+          <!-- Add your dealer cards from API here -->
+          <div class="card">Card 1</div>
+          <div class="card">Card 1</div>
+          <!-- Add more cards as needed -->
         </div>
+      </div>
 
-        <div id="play-button-container">
-            <button id="hit-button">Hit</button>
-            <div id="chip-counter">Chip Counter:<br>Win/Loss: </div>
-            <button id="stand-button">Stand</button>
-        </div>
+      <div id="play-button-container">
+        <button id="hit-button">Hit</button>
+        <div id="chip-counter">Chip Counter:<br />Win/Loss:</div>
+        <button id="stand-button">Stand</button>
+      </div>
 
-        <div class="player-section">
-            <!-- <div id="player1-label">Hand total:<br>PLAYER1:</div> -->
-            <div class="player-label" id="">Hand total:<br>Player:</div>
-            <div class=cards-container id="player1-cards-container">
-                <!--Add your player1 cardsfrom API here-->
-                <div class="card">Card 1</div>
-                <!--Add more cards as needed-->
-            </div>
+      <div class="player-section">
+        <!-- <div id="player1-label">Hand total:<br>PLAYER1:</div> -->
+        <div class="player-label" id="">Hand total:<br />Player:</div>
+        <div class="cards-container" id="player1-cards-container">
+          <!--Add your player1 cardsfrom API here-->
+          <div class="card">Card 1</div>
+          <!--Add more cards as needed-->
         </div>
+      </div>
     </main>
 
     <footer>
-        <button id="play-again-button">Deal</button>
-        <button id="end-game-button">End Game</button>
+      <button id="play-again-button">Deal</button>
+      <button id="end-game-button">End Game</button>
     </footer>
 
-    <script> src = "game.js" </script>
-</body>
-
+    <script src="game.js"></script>
+  </body>
 </html>
