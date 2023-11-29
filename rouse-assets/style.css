@@ -68,16 +68,30 @@ main {
 }
 
 .card {
-    border-radius: 5%;
-    display: flex;
-    height: 21vh;
-    width: 15vh;
-    border: 1px solid #ccc;
-    margin-right: -3vw;
-    background-color: rgba(55, 174, 67, 0.278);
-    border: solid rgb(153, 153, 221) 0.5vh;
-    background-color: rgb(118, 118, 194);
-    color:white
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  padding: 33px;
+  margin: auto;
+  position: relative;
+}
+
+.card > img {
+  position: absolute;
+  height: 200px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+}
+
+.cardFront {
+  z-index: 0;
+}
+
+.cardBack {
+  z-index: 50;
 }
 
 /* CENTRAL ELEMENTS */
