@@ -71,19 +71,20 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 120px;
   padding: 33px;
   margin: auto;
   position: relative;
+  background-color: transparent;
 }
 
 .card > img {
   position: absolute;
-  height: 200px;
+  height: 30vh;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
+
 }
 
 .cardFront {
@@ -96,50 +97,6 @@ main {
 
 /* CENTRAL ELEMENTS */
 
-    #play-button-container {
-        display: flex;
-        flex-wrap:wrap;
-        align-items: center;
-        justify-content: space-between;
-        height: 30%;
-        width: 40vw;
-        border-radius: 15px;
-        background-color: #ad3333;
-        border: #9f1818 1vh solid;
-    }
-
-    /* .button {
-        justify-content: center;
-        align-items: center;
-        height: 50%;
-        width: 20%;
-        font-size: 2vw;
-        background-color: #56c85a;
-        color: white;
-        border-radius: 11px;
-        margin: 3%;
-    } */
-
-    #stand-button {
-        background-color: #f03207;
-    }
-    #hit-button {
-        background-color: #56c85a;
-    }
-
-    #hit-button:hover {
-        background-color: #367e39;
-        /* Darker green on hover */
-        cursor: grab;
-        /* Cursor style on hover */
-    }
-
-    #stand-button:hover {
-        background-color: #cb2e2e;
-        /* Darker red on hover */
-        cursor: grab;
-
-    }
 
     #chip-counter {
         color: white;
@@ -149,6 +106,11 @@ main {
         text-align: center;
         width: 10vw;
     }
+
+     .btn{
+        height: 9vh;
+        width: 10vw;
+    } 
 
 /* FOOTER ELEMENTS */
 footer {
@@ -163,26 +125,6 @@ footer >* {
     margin-right: 1vw;
 }
 
-#play-again-button {
-    background-color: #56c85a;
-}
-#end-game-button {
-    background-color: #cb2e2e;
-}
-
-#play-again-button:hover {
-    background-color: #367e39;
-    /* Darker green on hover */
-    cursor: grab;
-    /* Cursor style on hover */
-}
-
-#end-game-button:hover {
-    background-color: #cb2e2e;
-    /* Darker red on hover */
-    cursor: grab;
-
-}
 
 @media screen and (max-width: 600px) {
    
