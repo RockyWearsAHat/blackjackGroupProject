@@ -108,7 +108,7 @@ main {
         border: #9f1818 1vh solid;
     }
 
-    .button {
+    /* .button {
         justify-content: center;
         align-items: center;
         height: 50%;
@@ -118,7 +118,7 @@ main {
         color: white;
         border-radius: 11px;
         margin: 3%;
-    }
+    } */
 
     #stand-button {
         background-color: #f03207;
