@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bootcamp Blackjack</title>
-    <link rel="stylesheet" href="rouse-assets/style.css">
-</head>
+    <link rel="stylesheet" href="rouse-assets/style.css" />
+  </head>
 
-<body>
-
+  <body>
     <header>
-        <p>Bootcamp Blackjack</p>
+      <p>Bootcamp Blackjack</p>
     </header>
 
     <main id="table">
       <div class="player-section">
         <div class="player-label">Hand total:<br />Dealer:</div>
-        <div class="cards-container" id="dealer-cards-container">
+        <ul class="cards-container" id="dealer-cards-container">
           <!-- Add your dealer cards from API here -->
-        </div>
+        </ul>
       </div>
 
-        <div class="player-section">
-            <!-- <div id="player1-label">Hand total:<br>PLAYER1:</div> -->
-            <div class="player-label" id="">PLAYER<br><br>Hand Total:</div>
-            <div class=cards-container id="player1-cards-container">
-                <!--Add your player1 cardsfrom API here-->
-            </div>
-        </div>
+      <div class="player-section">
+        <!-- <div id="player1-label">Hand total:<br>PLAYER1:</div> -->
+        <div class="player-label" id="">PLAYER<br /><br />Hand Total:</div>
+        <ul class="cards-container" id="player1-cards-container">
+          <!--Add your player1 cardsfrom API here-->
+        </ul>
+      </div>
     </main>
 
     <footer>
-        <button class="button" id="play-again-button">Deal</button>
-        <button class="button" id="end-game-button">End Game</button>
+      <button class="button" id="play-again-button">Deal</button>
+      <button class="button" id="end-game-button">End Game</button>
     </footer>
 
-    <script> src = "game.js" </script>
-</body>
-
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+      integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="game.js"></script>
+  </body>
 </html>
