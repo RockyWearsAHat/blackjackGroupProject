@@ -1,81 +1,70 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 body {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+    height: 100vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+* {
+    margin:0;
+    padding:0;
 }
 
 /*  HEADER ELEMENTS */
 header {
-  background-image: url("../rouse-assets/images/table-background.jpg");
-  /*background-position: right;*/
-  background-size: cover;
-  background-position: right;
-  height: 200px;
-  display: flex;
-  text-align: right;
-  align-items: center; /* Center the content vertically */
-  color: aliceblue;
-}
+    height: 15vh;
+    background-image: url(../rouse-assets/images/table-background.jpg);
+    /*background-position: right;*/
+    background-size: 100%;
+    background-position: left;
+    display: flex;
+    text-align:right;
+    align-items: center; /* Center the content vertically */
+    color: aliceblue;
+    border-bottom: #9f1818 1vh solid;
+  }
 
-header p {
-  font-size: 2.5em;
-  padding-left: 20px;
-  margin-right: auto; /* Align the text to the right */
-  text-align: right; /* Optional: Set text-align to right for older browser compatibility */
-}
+  header p {
+    font-size: 2.5em;
+    padding-left: 5%;
+    margin-right: auto; /* Align the text to the right */
+    text-align: right; /* Optional: Set text-align to right for older browser compatibility */
+  } 
 
 /* MAIN ELEMENTS */
 main {
-  display: flex;
-  background-image: url("../rouse-assets/images/green-felt.jpg");
-  background-position: right;
-  background-size: cover;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-main > * {
-  /* border: solid greenyellow 2px; */
+    display: flex;
+    height: 75vh;
+    background-image: url(../rouse-assets/images/green-felt.jpg);
+    background-position:right ;
+    background-size: cover;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .player-section {
-  display: flex;
-  justify-content: center;
-  /* border: solid red 3px; */
-  width: 100%;
+    height: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .player-label {
-  width: 20%;
-  align-self: center;
-  margin: 20px;
-  font-size: xx-large;
-  text-align: center;
-  color: white;
-}
-
-.dealer-card {
-  display: flex;
-  height: 120px;
-  width: 60px;
-  border: 1px solid #ccc;
-  padding: 33px;
-  margin: auto;
-  background-color: rgba(55, 174, 67, 0.278);
-  background: #990606;
+    width: 20%;
+    align-self: center;
+    margin: 10%;
+    font-size: 3vh;
+    text-align: center;
+    color: white
 }
 
 .cards-container {
-  height: 200px;
-  width: 900px;
-  display: flex;
-  border: 1px solid #ccc;
-  padding: 33px;
-  margin: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    height: 100%;
+    width: 60vw;
+    flex-wrap: wrap;
 }
 
 .card {
@@ -106,133 +95,95 @@ main > * {
 }
 
 /* CENTRAL ELEMENTS */
-#play {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  outline: 1px solid black#1c8c20;
-}
 
-#play-button-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  /* outline: 30px solid #990606; */
-}
+    #play-button-container {
+        display: flex;
+        flex-wrap:wrap;
+        align-items: center;
+        justify-content: space-between;
+        height: 30%;
+        width: 40vw;
+        border-radius: 15px;
+        background-color: #ad3333;
+        border: #9f1818 1vh solid;
+    }
 
-#hit-button {
-  justify-content: center;
-  align-items: center;
-  height: 80px;
-  width: 120px;
-  font-size: xx-large;
-  background-color: #56c85a;
-  /* Green background color */
-  color: white;
-  /* White text color */
-  padding: 10px 20px;
-  /* Padding inside the button */
-  border: none;
-  /* No border */
-  border-radius: 11px;
-  /* Rounded corners */
-  margin: 30px;
-}
+    .button {
+        justify-content: center;
+        align-items: center;
+        height: 50%;
+        width: 20%;
+        font-size: 2vw;
+        background-color: #56c85a;
+        color: white;
+        border-radius: 11px;
+        margin: 3%;
+    }
 
-#hit-button:hover {
-  background-color: #367e39;
-  /* Darker green on hover */
-  cursor: grab;
-  /* Cursor style on hover */
-}
+    #stand-button {
+        background-color: #f03207;
+    }
+    #hit-button {
+        background-color: #56c85a;
+    }
 
-#stand-button {
-  height: 80px;
-  width: 120px;
-  font-size: xx-large;
-  background-color: #f03207;
-  /* Red background color */
-  color: white;
-  /* White text color */
-  padding: 10px 20px;
-  /* Padding inside the button */
-  border: none;
-  /* No border */
-  border-radius: 11px;
-  /* Rounded corners */
-  margin: 30px;
-  justify-content: center;
-  align-items: center;
-}
+    #hit-button:hover {
+        background-color: #367e39;
+        /* Darker green on hover */
+        cursor: grab;
+        /* Cursor style on hover */
+    }
 
-#stand-button:hover {
-  background-color: #cb2e2e;
-  /* Darker red on hover */
-  cursor: grab;
-}
+    #stand-button:hover {
+        background-color: #cb2e2e;
+        /* Darker red on hover */
+        cursor: grab;
 
-#chip-counter {
-  color: white;
-  font-size: 20px;
-  align-self: center;
-  justify-content: center;
-}
+    }
+
+    #chip-counter {
+        color: white;
+        font-size: 1.5vw;
+        align-self: center;
+        justify-content: center;
+        text-align: center;
+        width: 10vw;
+    }
 
 /* FOOTER ELEMENTS */
 footer {
-  display: flex;
-  justify-content: center;
-  align-content: center;
+    background-color: #9f1818;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+footer >* {
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
 #play-again-button {
-  height: 80px;
-  width: 120px;
-  font-size: x-large;
-  background-color: #56c85a;
-  /* Green background color */
-  color: white;
-  /* White text color */
-  padding: 10px 20px;
-  /* Padding inside the button */
-  border: none;
-  /* No border */
-  border-radius: 11px;
-  /* Rounded corners */
-  margin: 30px;
-  justify-content: center;
-  align-items: center;
+    background-color: #56c85a;
+}
+#end-game-button {
+    background-color: #cb2e2e;
 }
 
 #play-again-button:hover {
-  background-color: #367e39;
-  /* Darker green on hover */
-  cursor: grab;
-  /* Cursor style on hover */
-}
-
-#end-game-button {
-  height: 80px;
-  width: 120px;
-  font-size: x-large;
-  background-color: #f03207;
-  /* Red background color */
-  color: white;
-  /* White text color */
-  padding: 10px 20px;
-  /* Padding inside the button */
-  border: none;
-  /* No border */
-  border-radius: 11px;
-  /* Rounded corners */
-  margin: 30px;
-  justify-content: center;
-  align-items: center;
+    background-color: #367e39;
+    /* Darker green on hover */
+    cursor: grab;
+    /* Cursor style on hover */
 }
 
 #end-game-button:hover {
-  background-color: #cb2e2e;
-  /* Darker red on hover */
-  cursor: grab;
+    background-color: #cb2e2e;
+    /* Darker red on hover */
+    cursor: grab;
+
+}
+
+@media screen and (max-width: 600px) {
+   
 }
