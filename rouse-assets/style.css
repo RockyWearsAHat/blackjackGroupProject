@@ -90,19 +90,15 @@ main > * {
 
 .card > img {
   position: absolute;
-  height: 100%;
+  height: 200px;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
 }
 
-.card.hidden {
-  transform: rotateY(180deg);
-}
-
 .cardFront {
-  z-index: 5;
+  z-index: 0;
 }
 
 .cardBack {
