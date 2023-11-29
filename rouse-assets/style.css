@@ -1,14 +1,11 @@
-
 body {
     height: 100vh;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-
 * {
-  margin: 0;
-  padding: 0;
+    margin:0;
+    padding:0;
 }
-
 
 /*  HEADER ELEMENTS */
 header {
@@ -150,218 +147,20 @@ footer {
 footer >* {
     margin-left: 1vw;
     margin-right: 1vw;
-  background-image: url("../rouse-assets/images/table-background.jpg");
-  /*background-position: right;*/
-  background-size: cover;
-  background-position: right;
-  height: 200px;
-  display: flex;
-  text-align: right;
-  align-items: center; /* Center the content vertically */
-  color: aliceblue;
-}
-
-header p {
-  font-size: 2.5em;
-  padding-left: 20px;
-  margin-right: auto; /* Align the text to the right */
-  text-align: right; /* Optional: Set text-align to right for older browser compatibility */
-}
-
-/* MAIN ELEMENTS */
-main {
-  display: flex;
-  background-image: url("../rouse-assets/images/green-felt.jpg");
-  background-position: right;
-  background-size: cover;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-main > * {
-  /* border: solid greenyellow 2px; */
-}
-
-.player-section {
-  display: flex;
-  justify-content: center;
-  /* border: solid red 3px; */
-  width: 100%;
-}
-
-.player-label {
-  width: 20%;
-  align-self: center;
-  margin: 20px;
-  font-size: xx-large;
-  text-align: center;
-  color: white;
-}
-
-.dealer-card {
-  display: flex;
-  height: 120px;
-  width: 60px;
-  border: 1px solid #ccc;
-  padding: 33px;
-  margin: auto;
-  background-color: rgba(55, 174, 67, 0.278);
-  background: #990606;
-}
-
-.cards-container {
-  height: 200px;
-  width: 900px;
-  display: flex;
-  border: 1px solid #ccc;
-  padding: 33px;
-  margin: 40px;
-}
-
-.card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 120px;
-  padding: 33px;
-  margin: auto;
-  position: relative;
-}
-
-.card > img {
-  position: absolute;
-  height: 100%;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-}
-
-.card.hidden {
-  transform: rotateY(180deg);
-}
-
-.cardFront {
-  z-index: 5;
-}
-
-.cardBack {
-  z-index: 50;
-}
-
-/* CENTRAL ELEMENTS */
-#play {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  outline: 1px solid black#1c8c20;
-}
-
-#play-button-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  /* outline: 30px solid #990606; */
-}
-
-#hit-button {
-  justify-content: center;
-  align-items: center;
-  height: 80px;
-  width: 120px;
-  font-size: xx-large;
-  background-color: #56c85a;
-  /* Green background color */
-  color: white;
-  /* White text color */
-  padding: 10px 20px;
-  /* Padding inside the button */
-  border: none;
-  /* No border */
-  border-radius: 11px;
-  /* Rounded corners */
-  margin: 30px;
-}
-
-#hit-button:hover {
-  background-color: #367e39;
-  /* Darker green on hover */
-  cursor: grab;
-  /* Cursor style on hover */
-}
-
-#stand-button {
-  height: 80px;
-  width: 120px;
-  font-size: xx-large;
-  background-color: #f03207;
-  /* Red background color */
-  color: white;
-  /* White text color */
-  padding: 10px 20px;
-  /* Padding inside the button */
-  border: none;
-  /* No border */
-  border-radius: 11px;
-  /* Rounded corners */
-  margin: 30px;
-  justify-content: center;
-  align-items: center;
-}
-
-#stand-button:hover {
-  background-color: #cb2e2e;
-  /* Darker red on hover */
-  cursor: grab;
-}
-
-#chip-counter {
-  color: white;
-  font-size: 20px;
-  align-self: center;
-  justify-content: center;
-}
-
-/* FOOTER ELEMENTS */
-footer {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-
 }
 
 #play-again-button {
-
     background-color: #56c85a;
 }
 #end-game-button {
     background-color: #cb2e2e;
-  height: 80px;
-  width: 120px;
-  font-size: x-large;
-  background-color: #56c85a;
-  /* Green background color */
-  color: white;
-  /* White text color */
-  padding: 10px 20px;
-  /* Padding inside the button */
-  border: none;
-  /* No border */
-  border-radius: 11px;
-  /* Rounded corners */
-  margin: 30px;
-  justify-content: center;
-  align-items: center;
 }
 
 #play-again-button:hover {
-  background-color: #367e39;
-  /* Darker green on hover */
-  cursor: grab;
-  /* Cursor style on hover */
+    background-color: #367e39;
+    /* Darker green on hover */
+    cursor: grab;
+    /* Cursor style on hover */
 }
 
 #end-game-button:hover {
@@ -373,28 +172,4 @@ footer {
 
 @media screen and (max-width: 600px) {
    
-}
-#end-game-button {
-  height: 80px;
-  width: 120px;
-  font-size: x-large;
-  background-color: #f03207;
-  /* Red background color */
-  color: white;
-  /* White text color */
-  padding: 10px 20px;
-  /* Padding inside the button */
-  border: none;
-  /* No border */
-  border-radius: 11px;
-  /* Rounded corners */
-  margin: 30px;
-  justify-content: center;
-  align-items: center;
-}
-
-#end-game-button:hover {
-  background-color: #cb2e2e;
-  /* Darker red on hover */
-  cursor: grab;
 }
