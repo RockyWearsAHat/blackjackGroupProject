@@ -1,14 +1,156 @@
+
+body {
+    height: 100vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 * {
   margin: 0;
   padding: 0;
 }
 
-body {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
 
 /*  HEADER ELEMENTS */
 header {
+    height: 15vh;
+    background-image: url(../rouse-assets/images/table-background.jpg);
+    /*background-position: right;*/
+    background-size: 100%;
+    background-position: left;
+    display: flex;
+    text-align:right;
+    align-items: center; /* Center the content vertically */
+    color: aliceblue;
+    border-bottom: #9f1818 1vh solid;
+  }
+
+  header p {
+    font-size: 2.5em;
+    padding-left: 5%;
+    margin-right: auto; /* Align the text to the right */
+    text-align: right; /* Optional: Set text-align to right for older browser compatibility */
+  } 
+
+/* MAIN ELEMENTS */
+main {
+    display: flex;
+    height: 75vh;
+    background-image: url(../rouse-assets/images/green-felt.jpg);
+    background-position:right ;
+    background-size: cover;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-section {
+    height: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.player-label {
+    width: 20%;
+    align-self: center;
+    margin: 10%;
+    font-size: 3vh;
+    text-align: center;
+    color: white
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    height: 100%;
+    width: 60vw;
+    flex-wrap: wrap;
+}
+
+.card {
+    border-radius: 5%;
+    display: flex;
+    height: 21vh;
+    width: 15vh;
+    border: 1px solid #ccc;
+    margin-right: -3vw;
+    background-color: rgba(55, 174, 67, 0.278);
+    border: solid rgb(153, 153, 221) 0.5vh;
+    background-color: rgb(118, 118, 194);
+    color:white
+}
+
+/* CENTRAL ELEMENTS */
+
+    #play-button-container {
+        display: flex;
+        flex-wrap:wrap;
+        align-items: center;
+        justify-content: space-between;
+        height: 30%;
+        width: 40vw;
+        border-radius: 15px;
+        background-color: #ad3333;
+        border: #9f1818 1vh solid;
+    }
+
+    .button {
+        justify-content: center;
+        align-items: center;
+        height: 50%;
+        width: 20%;
+        font-size: 2vw;
+        background-color: #56c85a;
+        color: white;
+        border-radius: 11px;
+        margin: 3%;
+    }
+
+    #stand-button {
+        background-color: #f03207;
+    }
+    #hit-button {
+        background-color: #56c85a;
+    }
+
+    #hit-button:hover {
+        background-color: #367e39;
+        /* Darker green on hover */
+        cursor: grab;
+        /* Cursor style on hover */
+    }
+
+    #stand-button:hover {
+        background-color: #cb2e2e;
+        /* Darker red on hover */
+        cursor: grab;
+
+    }
+
+    #chip-counter {
+        color: white;
+        font-size: 1.5vw;
+        align-self: center;
+        justify-content: center;
+        text-align: center;
+        width: 10vw;
+    }
+
+/* FOOTER ELEMENTS */
+footer {
+    background-color: #9f1818;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+footer >* {
+    margin-left: 1vw;
+    margin-right: 1vw;
+=======
   background-image: url("../rouse-assets/images/table-background.jpg");
   /*background-position: right;*/
   background-size: cover;
@@ -189,8 +331,15 @@ footer {
   display: flex;
   justify-content: center;
   align-content: center;
+
 }
+
 #play-again-button {
+
+    background-color: #56c85a;
+}
+#end-game-button {
+    background-color: #cb2e2e;
   height: 80px;
   width: 120px;
   font-size: x-large;
@@ -216,6 +365,16 @@ footer {
   /* Cursor style on hover */
 }
 
+#end-game-button:hover {
+    background-color: #cb2e2e;
+    /* Darker red on hover */
+    cursor: grab;
+
+}
+
+@media screen and (max-width: 600px) {
+   
+}
 #end-game-button {
   height: 80px;
   width: 120px;

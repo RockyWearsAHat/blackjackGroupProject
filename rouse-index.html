@@ -13,6 +13,38 @@
     </header>
 
     <main id="table">
+        <div class="player-section">
+            <div class="player-label">DEALER<br><br>Hand Total:</div>
+            <div class="cards-container" id="dealer-cards-container">
+                <!-- Add your dealer cards from API here -->
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+
+                <!-- Add more cards as needed -->
+            </div>
+        </div>
+
+        <div id="play-button-container">
+            <button class="button" id="hit-button">Hit</button>
+            <div id="chip-counter">Chip Counter:<br><br>Win/Loss: </div>
+            <button class="button" id ="stand-button">Stand</button>
+        </div>
+
+        <div class="player-section">
+            <!-- <div id="player1-label">Hand total:<br>PLAYER1:</div> -->
+            <div class="player-label" id="">PLAYER<br><br>Hand Total:</div>
+            <div class=cards-container id="player1-cards-container">
+                <!--Add your player1 cardsfrom API here-->
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+
+     
+                <!--Add more cards as needed-->
+            </div>
       <div class="player-section">
         <div class="player-label">Hand total:<br />Dealer:</div>
         <div class="cards-container" id="dealer-cards-container">
@@ -39,6 +71,8 @@
     </main>
 
     <footer>
+        <button class="button" id="play-again-button">Deal</button>
+        <button class="button" id="end-game-button">End Game</button>
       <button id="play-again-button">Deal</button>
       <button id="end-game-button">End Game</button>
     </footer>
