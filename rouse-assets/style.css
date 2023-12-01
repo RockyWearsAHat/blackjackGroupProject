@@ -22,14 +22,7 @@ header {
   border-bottom: #9f1818 1vh solid;
 }
 
-<<<<<<< HEAD
-header h1 {
-  font-size: 5vh;
-  padding-left: 2%;
-  text-align: left;
-  /* Optional: Set text-align to right for older browser compatibility */
-}
-=======
+
   header p {
     font-size: 2.5em;
     padding-left: 20px;
@@ -38,7 +31,6 @@ header h1 {
     text-align: left;
     /* Align the text to the left */
   } 
->>>>>>> baa82ed (Added @mediaQuery and indent styling for header text)
 
   .indent {
     margin-left: 30px;
