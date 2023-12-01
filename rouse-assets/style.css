@@ -1,70 +1,75 @@
 body {
-    height: 100vh;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  height: 100vh;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
 * {
-    margin:0;
-    padding:0;
+  margin: 0;
+  padding: 0;
 }
 
 /*  HEADER ELEMENTS */
 header {
-    height: 15vh;
-    background-image: url(../rouse-assets/images/table-background.jpg);
-    /*background-position: right;*/
-    background-size: 100%;
-    background-position: left;
-    display: flex;
-    text-align:right;
-    align-items: center; /* Center the content vertically */
-    color: aliceblue;
-    border-bottom: #9f1818 1vh solid;
-  }
+  height: 15vh;
+  background-image: url(../rouse-assets/images/table-background.jpg);
+  background-size: 105%;
+  background-position: left;
+  display: flex;
+  text-align: right;
+  align-items: center;
+  /* Center the content vertically */
+  color: aliceblue;
+  border-bottom: #9f1818 1vh solid;
+}
 
-  header p {
-    font-size: 2.5em;
-    padding-left: 5%;
-    margin-right: auto; /* Align the text to the right */
-    text-align: right; /* Optional: Set text-align to right for older browser compatibility */
-  } 
+header h1 {
+  font-size: 5vh;
+  padding-left: 2%;
+  text-align: left;
+  /* Optional: Set text-align to right for older browser compatibility */
+}
 
 /* MAIN ELEMENTS */
 main {
-    display: flex;
-    height: 75vh;
-    background-image: url(../rouse-assets/images/green-felt.jpg);
-    background-position:right ;
-    background-size: cover;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  height: 75vh;
+  background-image: url(../rouse-assets/images/green-felt.jpg);
+  background-position: right;
+  background-size: cover;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
+/* * {
+  border: white 2px solid;
+} */
+
 .player-section {
-    height: 35%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .player-label {
-    width: 20%;
-    align-self: center;
-    margin: 10%;
-    font-size: 3vh;
-    text-align: center;
-    color: white
+  width: 20%;
+  align-self: center;
+  margin: 10%;
+  font-size: 3vh;
+  text-align: center;
+  color: white
 }
 
 .cards-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: center;
-    height: 100%;
-    width: 60vw;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  height: 100%;
+  width: 60vw;
+  flex-wrap: wrap;
 }
 
 .card {
@@ -72,12 +77,13 @@ main {
   justify-content: center;
   align-items: center;
   padding: 33px;
-  margin: auto;
+  height: 30vw;
+  margin-left: 3%;
   position: relative;
   background-color: transparent;
 }
 
-.card > img {
+.card>img {
   position: absolute;
   height: 30vh;
   backface-visibility: hidden;
@@ -97,35 +103,79 @@ main {
 
 /* CENTRAL ELEMENTS */
 
-
-    #chip-counter {
-        color: white;
-        font-size: 1.5vw;
-        align-self: center;
-        justify-content: center;
-        text-align: center;
-        width: 10vw;
-    }
-
-     .btn{
-        height: 9vh;
-        width: 10vw;
-    } 
-
 /* FOOTER ELEMENTS */
+
 footer {
-    background-color: #9f1818;
-    height: 10vh;
+  border-top: rgb(32, 117, 60) 0.5vh solid;;
+  background-color: #9f1818;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#chip-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 3vh;
+  width: 20vw;
+}
+
+.btn {
+  height: 8.5vh;
+  width: 20vw;
+  font-size: 4vw;
+}
+
+footer>* {
+  margin-left: 1vw;
+  margin-right: 1vw;
+}
+
+
+@media screen and (orientation: portrait) {
+  header{
+    background-image: url(../rouse-assets/images/table-background.jpg);
+    justify-content: left;
+    text-align: left;
+  }
+  header h1{
+    width: 40%;
+  }
+
+  main{
+    height: 65vh;
+  }
+
+  .player-section {
+    flex-direction: column;
+  }
+
+  .player-section > *  {
+    margin: 0;
+    min-width: 100%;
+  }
+
+  .card>img {
+    height: 20vh;
+  }
+
+  footer {
+    height: 20vh
+  }
+
+  #chip-counter {
     display: flex;
-    justify-content: center;
-    align-items: center;
-}
-footer >* {
-    margin-left: 1vw;
-    margin-right: 1vw;
-}
+    flex-wrap: wrap;
+    font-size: 4vh;
+    width: 25vw;
+  }
 
-
-@media screen and (max-width: 600px) {
-   
+  .btn {
+    height: 80%;
+    width: 30vw;
+  }
 }
