@@ -14,7 +14,9 @@
 
     <main id="table">
       <div class="player-section">
-        <div class="player-label">Hand total:<br />Dealer:</div>
+        <div class="player-label">
+          DEALER<br />Hand Total: <span id="dealerHandTotal"></span>
+        </div>
         <ul class="cards-container" id="dealer-cards-container">
           <!-- Add your dealer cards from API here -->
         </ul>
@@ -22,7 +24,9 @@
 
       <div class="player-section">
         <!-- <div id="player1-label">Hand total:<br>PLAYER1:</div> -->
-        <div class="player-label" id="">PLAYER<br /><br />Hand Total:</div>
+        <div class="player-label">
+          PLAYER<br />Hand Total: <span id="playerHandTotal"></span>
+        </div>
         <ul class="cards-container" id="player1-cards-container">
           <!--Add your player1 cardsfrom API here-->
         </ul>
@@ -30,8 +34,8 @@
     </main>
 
     <footer>
-      <button class="button" id="play-again-button">Deal</button>
-      <button class="button" id="end-game-button">End Game</button>
+      <button class="button" id="play-again-button">Hit</button>
+      <button class="button" id="end-game-button">Stand</button>
     </footer>
 
     <script
