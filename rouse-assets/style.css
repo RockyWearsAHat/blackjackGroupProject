@@ -29,6 +29,13 @@ header h1 {
   /* Optional: Set text-align to right for older browser compatibility */
 }
 
+header p {
+    font-size: 2.5em;
+    padding-left: 5%;
+    margin-right: auto; /* Align the text to the right */
+    text-align: right; /* Optional: Set text-align to right for older browser compatibility */
+  } 
+
 .indent {
   margin-left: 5vw;
   /* You can adjust the value as needed */
