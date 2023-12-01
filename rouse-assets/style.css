@@ -22,37 +22,20 @@ header {
   border-bottom: #9f1818 1vh solid;
 }
 
-
-  header p {
-    font-size: 2.5em;
-    padding-left: 20px;
-    margin-right: auto;
-    /* Align the text to the right */
-    text-align: left;
-    /* Align the text to the left */
-  } 
-
-  .indent {
-    margin-left: 30px;
-    /* You can adjust the value as needed */
-    font-size: 70px;
-    font-family: cursive;
-    font-style: italic;
+header h1 {
+  font-size: 5vh;
+  padding-left: 2%;
+  text-align: left;
+  /* Optional: Set text-align to right for older browser compatibility */
 }
 
-/* Media Query for adjusting styles on smaller screens */
-@media screen and (max-width: 750px) {
-    header p {
-font-size: 1.5em; /* Adjust font size for smaller screens */
-        padding-left: 10px; /* Adjust padding for smaller screens */
-    }
-
-    .indent {
-        margin-left: 10px; /* Adjust margin for smaller screens */
-        font-size: 40px; /* Adjust font size for smaller screens */
-    }
+.indent {
+  margin-left: 5vw;
+  /* You can adjust the value as needed */
+  font-size: 6vh;
+  font-family: serif;
+  font-style: italic;
 }
-
 
 /* MAIN ELEMENTS */
 main {
@@ -126,8 +109,6 @@ main {
   z-index: 50;
 }
 
-/* CENTRAL ELEMENTS */
-
 /* FOOTER ELEMENTS */
 
 footer {
@@ -155,7 +136,7 @@ footer {
   font-size: 4vw;
 }
 
-footer>* {
+footer > * {
   margin-left: 1vw;
   margin-right: 1vw;
 }
@@ -169,6 +150,10 @@ footer>* {
   }
   header h1{
     width: 40%;
+  }
+
+  .indent{
+    margin-left: 3vw;
   }
 
   main{
@@ -202,5 +187,11 @@ footer>* {
   .btn {
     height: 80%;
     width: 30vw;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  header{
+    background-size: 255%;
   }
 }
