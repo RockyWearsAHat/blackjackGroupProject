@@ -16,19 +16,19 @@
 
 <body>
   <header>
-    <p>Bootcamp Blackjack</p>
+    <h1>Bootcamp Blackjack</h1>
   </header>
 
   <main id="table">
     <div class="player-section">
-      <div class="player-label">DEALER<br/><br/>Hand Total:</div>
+      <div class="player-label">DEALER<br/>Hand Total:</div>
       <ul class="cards-container" id="dealer-cards-container">
         <!-- Cards are inserted here as <li> -->
         </ul>
     </div>
 
     <div class="player-section">
-      <div class="player-label" id="">PLAYER<br/><br/>Hand Total:</div>
+      <div class="player-label" id="">PLAYER<br/>Hand Total:</div>
       <ul class="cards-container" id="player1-cards-container">
         <!-- Cards are inserted here as <li> -->
       </ul>
@@ -36,11 +36,9 @@
   </main>
 
   <footer>
-    <div class="d-grid gap-5 d-md-flex justify-content-md-block">
       <button type="button" class="btn btn-primary">Deal</button>
       <div id="chip-counter">Chips: <span id="chip-total">5</span></div>
       <button type="button" class="btn btn-danger">End Game</button>
-    </div>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
