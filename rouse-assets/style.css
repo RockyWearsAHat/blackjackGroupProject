@@ -136,12 +136,44 @@ footer {
   font-size: 4vw;
 }
 
+#deal-btn:hover::after {
+    content: "Continues to deal cards until it reaches the score of 21";
+    position: absolute;
+    left: 0px;
+    bottom: 24px;
+    min-width: 100px;
+    border: 1px #aaaaaa solid;
+    background-color: #3f5da9;
+    padding: 12px;
+    color: #fff;
+    font-size: 80%;
+    font-style:Verdana, Geneva, Tahoma, sans-serif; 
+    z-index: 1;
+  }
+
+  #end-btn:hover::after {
+    content: "When in stand, it keeps the cards you have, letting the other player(s) go against you";
+    position: absolute;
+    right: 0px;
+    bottom: 24px;
+    min-width: 100px;
+    border: 1px #aaaaaa solid;
+    background-color: rgb(107, 10, 10);
+    padding: 12px;
+    color: #fff;
+    font-size: 80%;
+    font-style:Verdana, Geneva, Tahoma, sans-serif; 
+    z-index: 1;
+  }
+
 footer > * {
   margin-left: 1vw;
   margin-right: 1vw;
 }
 
-
+footer {
+    z-index: 200;
+}
 @media screen and (orientation: portrait) {
   header{
     background-image: url(../rouse-assets/images/table-background.jpg);
