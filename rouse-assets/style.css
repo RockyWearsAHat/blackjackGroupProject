@@ -22,12 +22,45 @@ header {
   border-bottom: #9f1818 1vh solid;
 }
 
+<<<<<<< HEAD
 header h1 {
   font-size: 5vh;
   padding-left: 2%;
   text-align: left;
   /* Optional: Set text-align to right for older browser compatibility */
 }
+=======
+  header p {
+    font-size: 2.5em;
+    padding-left: 20px;
+    margin-right: auto;
+    /* Align the text to the right */
+    text-align: left;
+    /* Align the text to the left */
+  } 
+>>>>>>> baa82ed (Added @mediaQuery and indent styling for header text)
+
+  .indent {
+    margin-left: 30px;
+    /* You can adjust the value as needed */
+    font-size: 70px;
+    font-family: cursive;
+    font-style: italic;
+}
+
+/* Media Query for adjusting styles on smaller screens */
+@media screen and (max-width: 750px) {
+    header p {
+        font-size: 1.5em; /* Adjust font size for smaller screens */
+        padding-left: 10px; /* Adjust padding for smaller screens */
+    }
+
+    .indent {
+        margin-left: 10px; /* Adjust margin for smaller screens */
+        font-size: 40px; /* Adjust font size for smaller screens */
+    }
+}
+
 
 /* MAIN ELEMENTS */
 main {
