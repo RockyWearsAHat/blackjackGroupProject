@@ -51,7 +51,7 @@ header h1 {
 /* Media Query for adjusting styles on smaller screens */
 @media screen and (max-width: 750px) {
     header p {
-        font-size: 1.5em; /* Adjust font size for smaller screens */
+font-size: 1.5em; /* Adjust font size for smaller screens */
         padding-left: 10px; /* Adjust padding for smaller screens */
     }
 
