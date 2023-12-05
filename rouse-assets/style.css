@@ -10,7 +10,7 @@ body {
 
 /*  HEADER ELEMENTS */
 header {
-  height: 15vh;
+  height: 200px;
   background-image: url(../rouse-assets/images/table-background.jpg);
   background-size: 105%;
   background-position: left;
@@ -22,21 +22,21 @@ header {
   border-bottom: #9f1818 1vh solid;
 }
 
-header h1 {
-  font-size: 5vh;
-  padding-left: 2%;
+header p {
+  font-size: 2.5em;
+  padding-left: 20px;
+  margin-right: auto;
+  /* Align the text to the right */
   text-align: left;
-  /* Optional: Set text-align to right for older browser compatibility */
+  /* Align the text to the left */
 }
 
 .indent {
-  margin-left: 5vw;
-  /* You can adjust the value as needed */
-  font-size: 6vh;
-  font-family: serif;
+  margin-left: 30px;
+  font-size: 70px;
+  font-family: cursive;
   font-style: italic;
 }
-
 
 /* MAIN ELEMENTS */
 main {
@@ -69,7 +69,7 @@ main {
   margin: 10%;
   font-size: 3vh;
   text-align: center;
-  color: white
+  color: white;
 }
 
 .cards-container {
@@ -77,12 +77,11 @@ main {
   flex-direction: row;
   justify-content: left;
   align-items: center;
-  height: 100%;
   width: 60vw;
   flex-wrap: wrap;
 }
 
-.card {
+.playingCard {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -93,14 +92,13 @@ main {
   background-color: transparent;
 }
 
-.card>img {
+.playingCard > img {
   position: absolute;
   height: 30vh;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
-
 }
 
 .cardFront {
@@ -114,7 +112,7 @@ main {
 /* FOOTER ELEMENTS */
 
 footer {
-  border-top: rgb(32, 117, 60) 0.5vh solid;;
+  border-top: rgb(32, 117, 60) 0.5vh solid;
   background-color: #9f1818;
   height: 10vh;
   display: flex;
@@ -139,34 +137,34 @@ footer {
 }
 
 #deal-btn:hover::after {
-    content: "Continues to deal cards until it reaches the score of 21";
-    position: absolute;
-    left: 0px;
-    bottom: 24px;
-    min-width: 100px;
-    border: 1px #aaaaaa solid;
-    background-color: #3f5da9;
-    padding: 12px;
-    color: #fff;
-    font-size: 80%;
-    font-style:Verdana, Geneva, Tahoma, sans-serif; 
-    z-index: 1;
-  }
+  content: "Continues to deal cards until it reaches the score of 21";
+  position: absolute;
+  left: 0px;
+  bottom: 24px;
+  min-width: 100px;
+  border: 1px #aaaaaa solid;
+  background-color: #3f5da9;
+  padding: 12px;
+  color: #fff;
+  font-size: 80%;
+  font-style: Verdana, Geneva, Tahoma, sans-serif;
+  z-index: 1;
+}
 
-  #end-btn:hover::after {
-    content: "When in stand, it keeps the cards you have, letting the other player(s) go against you";
-    position: absolute;
-    right: 0px;
-    bottom: 24px;
-    min-width: 100px;
-    border: 1px #aaaaaa solid;
-    background-color: rgb(107, 10, 10);
-    padding: 12px;
-    color: #fff;
-    font-size: 80%;
-    font-style:Verdana, Geneva, Tahoma, sans-serif; 
-    z-index: 1;
-  }
+#end-btn:hover::after {
+  content: "When in stand, it keeps the cards you have, letting the other player(s) go against you";
+  position: absolute;
+  right: 0px;
+  bottom: 24px;
+  min-width: 100px;
+  border: 1px #aaaaaa solid;
+  background-color: rgb(107, 10, 10);
+  padding: 12px;
+  color: #fff;
+  font-size: 80%;
+  font-style: Verdana, Geneva, Tahoma, sans-serif;
+  z-index: 1;
+}
 
 footer > * {
   margin-left: 1vw;
@@ -174,23 +172,23 @@ footer > * {
 }
 
 footer {
-    z-index: 200;
+  z-index: 200;
 }
 @media screen and (orientation: portrait) {
-  header{
+  header {
     background-image: url(../rouse-assets/images/table-background.jpg);
     justify-content: left;
     text-align: left;
   }
-  header h1{
+  header h1 {
     width: 40%;
   }
 
-  .indent{
+  .indent {
     margin-left: 3vw;
   }
 
-  main{
+  main {
     height: 65vh;
   }
 
@@ -198,17 +196,17 @@ footer {
     flex-direction: column;
   }
 
-  .player-section > *  {
+  .player-section > * {
     margin: 0;
     min-width: 100%;
   }
 
-  .card>img {
+  .card > img {
     height: 20vh;
   }
 
   footer {
-    height: 20vh
+    height: 20vh;
   }
 
   #chip-counter {
@@ -225,7 +223,7 @@ footer {
 }
 
 @media screen and (max-width: 375px) {
-  header{
+  header {
     background-size: 255%;
   }
 }
