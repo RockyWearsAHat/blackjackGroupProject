@@ -1,4 +1,7 @@
 //STORE A GLOBAL VARIABLE FOR THE DECKID SO A NEW DECK IS NOT GENERATED EVERY RELOAD
+
+
+
 const globalDeckId = sessionStorage.getItem("deckId");
 
 let gameOver = false;
@@ -500,3 +503,5 @@ const startGame = async () => {
 // END LANDON CODE INSERT
 
 startGame();
+
+

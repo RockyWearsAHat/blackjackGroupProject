@@ -38,19 +38,6 @@ header p {
   font-style: italic;
 }
 
-/* Media Query for adjusting styles on smaller screens */
-@media screen and (max-width: 750px) {
-  header p {
-    font-size: 1.5em; /* Adjust font size for smaller screens */
-    padding-left: 10px; /* Adjust padding for smaller screens */
-  }
-
-  .indent {
-    margin-left: 10px; /* Adjust margin for smaller screens */
-    font-size: 40px; /* Adjust font size for smaller screens */
-  }
-}
-
 /* MAIN ELEMENTS */
 main {
   display: flex;
@@ -62,6 +49,7 @@ main {
   justify-content: center;
   align-items: center;
 }
+
 
 /* * {
   border: white 2px solid;
