@@ -16,7 +16,7 @@
 
 <body>
   <header>
-    <h1>Bootcamp <br/><span class="indent">Blackjack</span></h1>
+    <h1>Bootcamp <br /><span class="indent">Blackjack</span></h1>
   </header>
 
   <main id="table">
@@ -26,6 +26,29 @@
         <!-- Cards are inserted here as <li> -->
       </ul>
     </div>
+
+    <!-- Trigger Button Modal -->
+    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#ruleModal">
+      Blackjack Rules 
+    </button>
+     <!-- Modal -->
+<div class="modal fade" id="ruleModal" tabindex="-1" aria-labelledby="ruleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Rules of the Game</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <br>1. BlackJack Pays 3 to 2</br>
+        [2. Dealer must draw to 16 and stand on all 17's<br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <div class="player-section">
       <div class="player-label" id="">PLAYER<br />Hand Total: <span id="playerHandTotal"></span></div>
@@ -37,16 +60,12 @@
 
   <footer>
     <div class="d-grid gap-2 d-md-flex justify-content-md-block"></div>
-    <button type="button shadow-lg p-3 mb-5 bg-body-tertiary" class="btn btn-primary" id="play-again-button"><span id="deal-btn">Deal</span></button>
+    <button type="button shadow-lg p-3 mb-5 bg-body-tertiary" class="btn btn-primary" id="play-again-button"><span
+        id="deal-btn">Deal</span></button>
     <div id="chip-counter">Chips: <span id="chip-total">5</span></div>
-    <button type="button shadow-lg p-3 mb-5 bg-body-tertiary rounded" class="btn btn-danger" id="end-game-button"><span id="end-btn">End Game</span></button>
+    <button type="button shadow-lg p-3 mb-5 bg-body-tertiary rounded" class="btn btn-danger" id="end-game-button"><span
+        id="end-btn">End Game</span></button>
   </footer>
-
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
-    integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="./rouse-assets/game.js"></script>
 </body>
 

@@ -37,6 +37,7 @@ header h1 {
   font-style: italic;
 }
 
+
 /* MAIN ELEMENTS */
 main {
   display: flex;
@@ -48,6 +49,7 @@ main {
   justify-content: center;
   align-items: center;
 }
+
 
 /* * {
   border: white 2px solid;
