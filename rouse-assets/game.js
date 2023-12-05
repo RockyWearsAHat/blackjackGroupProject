@@ -110,7 +110,7 @@ const addCardToHand = async (
       } else {
         const li = document.createElement("li");
         li.id = `dealerCard${json.piles.dealer.remaining - 1}`;
-        li.classList = "card dealerCard hidden";
+        li.classList = "playingCard dealerCard hidden";
         li.innerHTML = `<img src="https://www.deckofcardsapi.com/static/img/back.png" class="cardBack"/><img src="" class="cardFront"/>`;
         dealerHand.appendChild(li);
         return new Response(json.piles.dealer.remaining - 1);
@@ -137,7 +137,7 @@ const getUserHand = async (deck = "", user = users) => {
       if (user == users.PLAYER) {
         const li = document.createElement("li");
         li.id = `playerCard${json.piles.player.cards.length - 1}`;
-        li.classList = "card playerCard hidden";
+        li.classList = "playingCard playerCard hidden";
         li.innerHTML = `<img src="https://www.deckofcardsapi.com/static/img/back.png" class="cardBack"/><img src="${
           json.piles.player.cards[json.piles.player.cards.length - 1].image
         }" class="cardFront"/>`;
