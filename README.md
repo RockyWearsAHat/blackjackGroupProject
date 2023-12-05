@@ -31,7 +31,7 @@ https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js
 https://deckofcardsapi.com/api/deck/new/shuffle/
 https://deckofcardsapi.com/api/deck/${deck}/draw/
 https://deckofcardsapi.com/api/deck/${deck}/pile/
-https://www.deckofcardsapi.com/static/img/back.png" class="cardBack"
+https://www.deckofcardsapi.com/static/img/back.png/
 
 
 ## Bootcamp Blackjack Developers - Team 6
