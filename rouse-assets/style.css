@@ -10,7 +10,7 @@ body {
 
 /*  HEADER ELEMENTS */
 header {
-  height: 200px;
+  height: 15vh;
   background-image: url(../rouse-assets/images/table-background.jpg);
   background-size: 105%;
   background-position: left;
@@ -56,12 +56,13 @@ main {
 } */
 
 .player-section {
-  height: 50%;
+  height: 45%;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
+
 
 .player-label {
   width: 20%;
@@ -73,6 +74,7 @@ main {
 }
 
 .cards-container {
+  height: 93%;
   display: flex;
   flex-direction: row;
   justify-content: left;
@@ -86,7 +88,6 @@ main {
   justify-content: center;
   align-items: center;
   padding: 33px;
-  height: 30vw;
   margin-left: 3%;
   position: relative;
   background-color: transparent;
@@ -107,6 +108,10 @@ main {
 
 .cardBack {
   z-index: 50;
+}
+
+#modal-button{
+  color: white;
 }
 
 /* FOOTER ELEMENTS */
@@ -201,7 +206,7 @@ footer {
     min-width: 100%;
   }
 
-  .card > img {
+  .playerCard > img {
     height: 20vh;
   }
 
