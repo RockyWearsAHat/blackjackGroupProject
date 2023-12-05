@@ -1,65 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootcamp Blackjack</title>
+    <link rel="stylesheet" href="rouse-assets/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bootcamp Blackjack</title>
-  <link rel="stylesheet" href="rouse-assets/style.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <body>
+    <header>
+      <p>Bootcamp<br /><span class="indent">Blackjack</span></p>
+    </header>
 
-<<<<<<< HEAD
     <main id="table">
       <div class="player-section">
         <div class="player-label">
-          DEALER SHOWS<br />Hand Total: <span id="dealerHandTotal"></span>
+          DEALER<br />Hand Total: <span id="dealerHandTotal"></span>
         </div>
         <ul class="cards-container" id="dealer-cards-container">
-          <!-- Add your dealer cards from API here -->
+          <!-- Cards are inserted here as <li> -->
         </ul>
       </div>
-=======
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
-</head>
->>>>>>> c36859c5c43592d994c785d467ed5e8e25a8b268
 
-<body>
-  <header>
-    <p><span class="other-color">not</span>Bootcamp<br/><span class="indent">Blackjack</span></p>
-  </header>
+      <div class="player-section">
+        <div class="player-label" id="">
+          PLAYER<br />Hand Total: <span id="playerHandTotal"></span>
+        </div>
+        <ul class="cards-container" id="player1-cards-container">
+          <!-- Cards are inserted here as <li> -->
+        </ul>
+      </div>
+    </main>
 
-  <main id="table">
-    <div class="player-section">
-      <div class="player-label">DEALER<br />Hand Total: <span id="dealerHandTotal"></span></div>
-      <ul class="cards-container" id="dealer-cards-container">
-        <!-- Cards are inserted here as <li> -->
-      </ul>
-    </div>
+    <footer>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-block"></div>
+      <button
+        type="button shadow-lg p-3 mb-5 bg-body-tertiary"
+        class="btn btn-primary"
+        id="play-again-button"
+      >
+        <span id="deal-btn">Deal</span>
+      </button>
+      <div id="chip-counter">Chips: <span id="chip-total">5</span></div>
+      <button
+        type="button shadow-lg p-3 mb-5 bg-body-tertiary rounded"
+        class="btn btn-danger"
+        id="end-game-button"
+      >
+        <span id="end-btn">End Game</span>
+      </button>
+    </footer>
 
-    <div class="player-section">
-      <div class="player-label" id="">PLAYER<br />Hand Total: <span id="playerHandTotal"></span></div>
-      <ul class="cards-container" id="player1-cards-container">
-        <!-- Cards are inserted here as <li> -->
-      </ul>
-    </div>
-  </main>
-
-  <footer>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-block"></div>
-    <button type="button shadow-lg p-3 mb-5 bg-body-tertiary" class="btn btn-primary" id="play-again-button"><span id="deal-btn">Deal</span></button>
-    <div id="chip-counter">Chips: <span id="chip-total">5</span></div>
-    <button type="button shadow-lg p-3 mb-5 bg-body-tertiary rounded" class="btn btn-danger" id="end-game-button"><span id="end-btn">End Game</span></button>
-  </footer>
-
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
-    integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="./rouse-assets/game.js"></script>
-</body>
-
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+      integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./rouse-assets/game.js"></script>
+  </body>
 </html>
