@@ -89,7 +89,6 @@ main {
   flex-direction: row;
   justify-content: left;
   align-items: center;
-  height: 100%;
   width: 60vw;
   flex-wrap: wrap;
 }
