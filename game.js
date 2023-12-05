@@ -137,7 +137,7 @@ const getUserHand = async (deck = "", user = users) => {
       if (user == users.PLAYER) {
         const li = document.createElement("li");
         li.id = `playerCard${json.piles.player.cards.length - 1}`;
-        li.classList = "card playerCard";
+        li.classList = "card playerCard hidden";
         li.innerHTML = `<img src="https://www.deckofcardsapi.com/static/img/back.png" class="cardBack"/><img src="${
           json.piles.player.cards[json.piles.player.cards.length - 1].image
         }" class="cardFront"/>`;
@@ -152,6 +152,8 @@ const getUserHand = async (deck = "", user = users) => {
           }
         }
       }
+
+      return new Response(JSON.stringify(json));
     } else {
       return new Error("Error Getting Hand");
     }
@@ -171,6 +173,7 @@ const flipDealerHand = (deck, show = true) => {
 const flipSelectedCards = async (card, show = true) => {
   if (Array.isArray(card) && card.length && card.length > 1) {
     card.forEach((card) => {
+      if (!card.classList.contains("hidden")) return;
       gsap.set(card, {
         transformStyle: "preserve-3d",
         transformPerspective: 1000,
@@ -235,6 +238,9 @@ const convertCardCodeToNumber = (cardCode, runningTotal = 0) => {
     case "KING":
       return 10;
     case "ACE":
+      if (runningTotal <= 10) {
+        return 11;
+      }
       return 1;
     default:
       return Number(cardCode);
@@ -253,41 +259,96 @@ const calcHandTotal = async (deck = "", user = users.PLAYER) => {
 
     let showingHandTotal = 0;
     let handTotal = 0;
+    let aceCounter = 0;
 
     if (json.success) {
       if (user === users.DEALER) {
         for (let i = 0; i < json.piles.dealer.cards.length; i++) {
-          if (
-            document
-              .getElementById(`dealerCard${i}`)
-              .classList.contains("hidden")
-          ) {
-            handTotal += convertCardCodeToNumber(
-              json.piles.dealer.cards[i].value,
-              handTotal
-            );
+          if (json.piles.dealer.cards[i].value.substring(0, 1) == "A") {
+            aceCounter++;
+          } else {
+            if (
+              document
+                .getElementById(`dealerCard${i}`)
+                .classList.contains("hidden")
+            ) {
+              handTotal += convertCardCodeToNumber(
+                json.piles.dealer.cards[i].value,
+                handTotal
+              );
+            } else {
+              showingHandTotal += convertCardCodeToNumber(
+                json.piles.dealer.cards[i].value,
+                showingHandTotal
+              );
+              handTotal += convertCardCodeToNumber(
+                json.piles.dealer.cards[i].value,
+                handTotal
+              );
+            }
+          }
+        }
+
+        if (handTotal + aceCounter * 11 > 21) {
+          handTotal += aceCounter * 1;
+        } else {
+          handTotal += aceCounter * 11;
+        }
+
+        const dealerCardContainer = document.getElementById(
+          "dealer-cards-container"
+        );
+        console.log(aceCounter);
+        if (aceCounter > 0) {
+          for (let i = 0; i < dealerCardContainer.children.length; i++) {
+            //https://deckofcardsapi.com/static/img/AS.png
+            if (!dealerCardContainer.children[i].classList.contains("hidden")) {
+              if (
+                dealerCardContainer.children[i].children[1].src
+                  .substring(38, 39)
+                  .toUpperCase() === "A"
+              ) {
+                console.log("card is unhidden ace!");
+                if (showingHandTotal + aceCounter * 11 > 21) {
+                  showingHandTotal += aceCounter * 1;
+                } else {
+                  showingHandTotal += aceCounter * 11;
+                }
+              }
+            }
+          }
+        }
+
+        aceCounter = 0;
+
+        // console.log(aceCounter, handTotal);
+      } else {
+        for (let i = 0; i < json.piles.player.cards.length; i++) {
+          if (json.piles.player.cards[i].value.substring(0, 1) == "A") {
+            aceCounter++;
           } else {
             showingHandTotal += convertCardCodeToNumber(
-              json.piles.dealer.cards[i].value,
+              json.piles.player.cards[i].value,
               showingHandTotal
             );
             handTotal += convertCardCodeToNumber(
-              json.piles.dealer.cards[i].value,
+              json.piles.player.cards[i].value,
               handTotal
             );
           }
         }
-      } else {
-        for (let i = 0; i < json.piles.player.cards.length; i++) {
-          showingHandTotal += convertCardCodeToNumber(
-            json.piles.player.cards[i].value,
-            showingHandTotal
-          );
-          handTotal += convertCardCodeToNumber(
-            json.piles.player.cards[i].value,
-            handTotal
-          );
+
+        // console.log(handTotal);
+        if (handTotal + aceCounter * 11 > 21) {
+          handTotal += aceCounter * 1;
+          showingHandTotal += aceCounter * 1;
+        } else {
+          handTotal += aceCounter * 11;
+          showingHandTotal += aceCounter * 11;
         }
+        aceCounter = 0;
+
+        // console.log(aceCounter, handTotal);
       }
 
       const elementToModify = document.getElementById(`${user}HandTotal`);
@@ -310,12 +371,12 @@ const calcHandTotal = async (deck = "", user = users.PLAYER) => {
 
       if (handTotal == 21) {
         console.log(`${user} has won!`);
-        elementToModify.innerHTML = 21;
+        elementToModify.innerHTML = ` 21`;
         gameOver = true;
         return Promise.resolve(handTotal);
       } else if (handTotal > 21) {
         console.log(`${user} has busted!`);
-        elementToModify.innerHTML = `${handTotal} / BUST`;
+        elementToModify.innerHTML = ` ${handTotal} / BUST`;
         gameOver = true;
         return Promise.resolve(100);
       } else {
@@ -355,6 +416,7 @@ const startGame = async () => {
   }
 
   const hitBtn = document.getElementById("play-again-button");
+  const stayBtn = document.getElementById("end-game-button");
 
   const playerCardContainer = document.getElementById(
     "player1-cards-container"
@@ -373,10 +435,11 @@ const startGame = async () => {
 
         console.log(res);
         if (res === 100) {
-          setTimeout(async () => {
-            flipDealerHand(newDeck, true);
-            await calcHandTotal(newDeck, users.DEALER);
-          }, 1000);
+          flipDealerHand(newDeck, true);
+          const hand = await getUserHand(newDeck, users.DEALER);
+          const handVal = await hand.json();
+          console.log(handVal);
+          await calcHandTotal(newDeck, users.DEALER);
         } else if (res === 21) {
           flipDealerHand(newDeck, true);
           await calcHandTotal(newDeck, users.DEALER);
@@ -387,6 +450,53 @@ const startGame = async () => {
       // console.log(lastIndex);
     }
   });
+
+  stayBtn.addEventListener("click", async () => {
+    if (!gameOver) {
+      flipDealerHand(newDeck, true);
+      await calcHandTotal(newDeck, users.DEALER);
+      // vv This part is a mess, I could not figure out how to pull the value of the dealer hand total.
+      const dealerHandTotalElement = document.getElementById("dealerHandTotal");
+      const dealerHandTotal = parseInt(dealerHandTotalElement.innerHTML);
+      const playerHandTotalElement = document.getElementById("playerHandTotal");
+      const playerHandTotal = parseInt(playerHandTotalElement.innerHTML);
+      while (dealerHandTotal < 17 && !gameOver) {
+        await drawCard(newDeck, 1, users.DEALER);
+        flipDealerHand(newDeck, true);
+        await calcHandTotal(newDeck, users.DEALER);
+        const updatedDealerHandTotal = parseInt(
+          document.getElementById("dealerHandTotal").innerHTML
+        );
+        if (updatedDealerHandTotal >= 17) {
+          break;
+        }
+      }
+      console.log(gameOver);
+      console.log(parseInt(dealerHandTotalElement.innerHTML));
+      console.log(playerHandTotal);
+      if (!gameOver) {
+        let playerDif = 21 - playerHandTotal;
+        let dealerDif = 21 - parseInt(dealerHandTotalElement.innerHTML);
+        if (playerDif < dealerDif) {
+          console.log("player has won smaller dif");
+          playerHandTotalElement.textContent = playerHandTotal + " - Won!";
+          dealerHandTotalElement.textContent =
+            parseInt(dealerHandTotalElement.innerHTML) + " - Lost!";
+        } else if (dealerDif < playerDif) {
+          console.log("dealer has won smaller dif");
+          playerHandTotalElement.textContent = playerHandTotal + " - Lost!";
+          dealerHandTotalElement.textContent =
+            parseInt(dealerHandTotalElement.innerHTML) + " - Won!";
+        } else if (dealerDif == playerDif) {
+          console.log("push");
+          playerHandTotalElement.textContent = playerHandTotal + " - Push!";
+          dealerHandTotalElement.textContent =
+            parseInt(dealerHandTotalElement.innerHTML) + " - Push!";
+        }
+      }
+    }
+  });
 };
+// END LANDON CODE INSERT
 
 startGame();
