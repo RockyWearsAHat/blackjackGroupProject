@@ -1,6 +1,6 @@
 //STORE A GLOBAL VARIABLE FOR THE DECKID SO A NEW DECK IS NOT GENERATED EVERY RELOAD
 
-const globalDeckId = sessionStorage.getItem("deckId");
+let globalDeckId = sessionStorage.getItem("deckId");
 
 let gameOver = false;
 
@@ -375,7 +375,7 @@ const calcHandTotal = async (deck = "", user = users.PLAYER) => {
       } else if (handTotal > 21) {
         console.log(`${user} has busted!`);
 
-        flipDealerHand(globalDeckId, true);
+        flipDealerHand(sessionStorage.getItem("deckId"), true);
         elementToModify.innerHTML = ` ${handTotal} / BUST`;
         gameOver = true;
         const otherUser = user == users.PLAYER ? users.DEALER : users.PLAYER;
@@ -459,16 +459,16 @@ const startGame = async () => {
 
         // console.log(res);
         if (res === 100) {
+          await calcHandTotal(newDeck, users.DEALER);
           flipDealerHand(newDeck, true);
           const hand = await getUserHand(newDeck, users.DEALER);
           const handVal = await hand.json();
           // console.log(handVal);
-          await calcHandTotal(newDeck, users.DEALER);
           writeNewBetAndShowRestartScreen(users.DEALER);
         } else if (res === 21) {
-          flipDealerHand(newDeck, true);
           const dealerTotal = await calcHandTotal(newDeck, users.DEALER);
           const playerTotal = await calcHandTotal(newDeck, users.PLAYER);
+          flipDealerHand(newDeck, true);
 
           const dealerHandTotalElement =
             document.getElementById("dealerHandTotal");
@@ -594,12 +594,14 @@ const parseCookie = (str) =>
       return acc;
     }, {});
 
+var expirationDate = new Date();
+expirationDate.setFullYear(expirationDate.getFullYear() + 1);
 const placeBetAndHideStartScreen = () => {
   if (document.cookie) {
     const cookie = parseCookie(document.cookie);
 
     if (cookie["chips"] == "NaN") {
-      document.cookie = "chips=5000";
+      document.cookie = `chips=5000; expires=${expirationDate.toUTCString()}`;
     }
 
     let flag = false;
@@ -611,11 +613,11 @@ const placeBetAndHideStartScreen = () => {
     if (flag) {
       currentChips = cookie["chips"];
     } else {
-      document.cookie += "chips=5000";
+      document.cookie = `chips=5000; expires=${expirationDate.toUTCString()}`;
       currentChips = parseCookie(document.cookie)["chips"];
     }
   } else {
-    document.cookie += "chips=5000";
+    document.cookie = `chips=5000; expires=${expirationDate.toUTCString()}`;
     currentChips = parseCookie(document.cookie)["chips"];
   }
 
@@ -623,12 +625,16 @@ const placeBetAndHideStartScreen = () => {
   const betEntryVal = betEntry.value;
   betEntry.value = "";
 
-  const cookie = parseCookie(document.cookie);
+  if (betEntryVal > Number(parseCookie(document.cookie)["chips"])) {
+    console.log("Bet cannot be higher than remaining chips");
+    return Promise.resolve(false);
+  }
+
   // console.log(cookie["chips"]);
   const newChipVal =
     Number(parseCookie(document.cookie)["chips"]) - betEntryVal;
 
-  document.cookie = `chips=${newChipVal}`;
+  document.cookie = `chips=${newChipVal}; expires=${expirationDate.toUTCString()}`;
   // console.log(parseCookie(document.cookie)["chips"]);
 
   const currentBetSpan = document.getElementById("current-bet");
@@ -637,7 +643,8 @@ const placeBetAndHideStartScreen = () => {
   const startScreenWrapper = document.getElementById("startScreenWrapper");
   startScreenWrapper.classList.add("hidden");
 
-  return betEntryVal;
+  console.log(document.cookie);
+  return Promise.resolve(betEntryVal);
 };
 
 const writeNewBetAndShowRestartScreen = (
@@ -662,22 +669,28 @@ const writeNewBetAndShowRestartScreen = (
     // console.log(chipsLeft, chipsBet);
 
     if (push) {
-      document.cookie = `chips=${chipsLeft + chipsBet}`;
+      document.cookie = `chips=${
+        chipsLeft + chipsBet
+      }; expires=${expirationDate.toUTCString()}`;
       // console.log(document.cookie);
       sessionStorage.setItem("won", "push");
       return;
     } else if (blackjack) {
-      document.cookie = `chips=${chipsLeft + chipsBet * 3}`;
+      document.cookie = `chips=${
+        chipsLeft + chipsBet * 3
+      }; expires=${expirationDate.toUTCString()}`;
       // console.log(document.cookie);
       sessionStorage.setItem("won", "blackjack");
       return;
     } else if (winningUser === users.DEALER) {
-      document.cookie = `chips=${chipsLeft}`;
+      document.cookie = `chips=${chipsLeft}; expires=${expirationDate.toUTCString()}`;
       // console.log(document.cookie);
       sessionStorage.setItem("won", "dealer");
       return;
     } else if (winningUser === users.PLAYER) {
-      document.cookie = `chips=${chipsLeft + chipsBet * 2}`;
+      document.cookie = `chips=${
+        chipsLeft + chipsBet * 2
+      }; expires=${expirationDate.toUTCString()}`;
       // console.log(document.cookie);
       sessionStorage.setItem("won", "player");
       return;
@@ -695,10 +708,12 @@ const startGameButton = document.getElementById("startGameButton");
 
 startGameButton.addEventListener("click", async () => {
   const chipBet = await placeBetAndHideStartScreen();
-  const remainingChips = parseCookie(document.cookie)["chips"];
-  sessionStorage.setItem("currentBet", chipBet);
-  sessionStorage.setItem("remainingChips", remainingChips);
-  startGame();
+  if (chipBet) {
+    const remainingChips = parseCookie(document.cookie)["chips"];
+    sessionStorage.setItem("currentBet", chipBet);
+    sessionStorage.setItem("remainingChips", remainingChips);
+    startGame();
+  }
 });
 
 if (
