@@ -10,7 +10,7 @@ body {
 
 /*  HEADER ELEMENTS */
 header {
-  height: 15vh;
+  max-height: 15vh;
   background-image: url(../rouse-assets/images/table-background.jpg);
   background-size: 105%;
   background-position: left;
@@ -222,7 +222,7 @@ footer {
     height: 80%;
   }
 
-  .playingCard{
+  .playingCard {
     height: 90%;
   }
   .playingCard > img {
@@ -260,11 +260,11 @@ footer {
 }
 #darkenBackground {
   width: 100vw;
-  height: 100vh;
+  height: 200vh;
   background-color: rgba(1, 1, 1, 0.583);
   position: absolute;
   top: -15vh;
-  z-index: -1 !important;
+  z-index: -1;
 }
 
 #startScreenWrapper {
@@ -341,4 +341,10 @@ footer {
   position: relative;
   width: fit-content;
   height: 250px;
+}
+
+@media screen and (orientation: portrait) {
+  #startScreenWrapper {
+    margin-top: -6.7vh !important;
+  }
 }
