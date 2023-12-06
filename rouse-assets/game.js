@@ -374,6 +374,8 @@ const calcHandTotal = async (deck = "", user = users.PLAYER) => {
         return Promise.resolve(handTotal);
       } else if (handTotal > 21) {
         console.log(`${user} has busted!`);
+
+        flipDealerHand(globalDeckId, true);
         elementToModify.innerHTML = ` ${handTotal} / BUST`;
         gameOver = true;
         const otherUser = user == users.PLAYER ? users.DEALER : users.PLAYER;
