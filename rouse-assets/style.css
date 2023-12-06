@@ -82,6 +82,7 @@ main {
 }
 
 .playingCard {
+  margin-top: 2vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -112,6 +113,8 @@ main {
 #modal-button{
   height: 10%;
   color: white;
+  text-align: center;
+  width: 40vw;
 }
 
 /* FOOTER ELEMENTS */
@@ -139,10 +142,11 @@ footer {
   height: 8.5vh;
   width: 20vw;
   font-size: 4vw;
+  z-index: 100;
 }
 
-#deal-btn:hover::after {
-  content: "Continues to deal cards until it reaches the score of 21";
+#play-again-button:hover::after {
+  content: "Hitting will deal another card to your hand.";
   position: absolute;
   left: 0px;
   bottom: 24px;
@@ -156,8 +160,8 @@ footer {
   z-index: 1;
 }
 
-#end-btn:hover::after {
-  content: "When in stand, it keeps the cards you have, letting the other player(s) go against you";
+#end-game-button:hover::after {
+  content: "Standing will force the dealer to draw until his card count is 17 or greater.";
   position: absolute;
   right: 0px;
   bottom: 24px;
@@ -179,6 +183,7 @@ footer > * {
 footer {
   z-index: 200;
 }
+
 @media screen and (orientation: portrait) {
   header {
     background-image: url(../rouse-assets/images/table-background.jpg);
@@ -218,7 +223,7 @@ footer {
     height: 80%;
   }
   .playingCard{
-    height: 100%;
+    height: 90%;
   }
   .playingCard>img{
     height: 100%;
@@ -241,7 +246,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 550px) {
   header {
     background-size: 255%;
   }
