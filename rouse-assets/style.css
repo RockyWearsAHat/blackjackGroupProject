@@ -46,8 +46,8 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
-
 
 /* * {
   border: white 2px solid;
@@ -60,7 +60,6 @@ main {
   align-items: center;
   width: 100%;
 }
-
 
 .player-label {
   width: 20%;
@@ -110,7 +109,7 @@ main {
   z-index: 50;
 }
 
-#modal-button{
+#modal-button {
   height: 10%;
   color: white;
   text-align: center;
@@ -161,7 +160,7 @@ footer {
 }
 
 #end-game-button:hover::after {
-  content: "Standing will force the dealer to draw until his card count is 17 or greater.";
+  content: "Standing will force the dealer to draw until his hand total is 17 or greater.";
   position: absolute;
   right: 0px;
   bottom: 24px;
@@ -207,8 +206,8 @@ footer {
     flex-direction: column;
   }
 
-  #modal-button{
-    height:7.5%;
+  #modal-button {
+    height: 7.5%;
     margin: 1vh;
   }
   .player-section > * {
@@ -216,16 +215,17 @@ footer {
     min-width: 100%;
   }
 
-  .player-label{
+  .player-label {
     font-size: 3vh;
   }
-  .cards-container{
+  .cards-container {
     height: 80%;
   }
+
   .playingCard{
     height: 90%;
   }
-  .playingCard>img{
+  .playingCard > img {
     height: 100%;
   }
 
@@ -250,4 +250,95 @@ footer {
   header {
     background-size: 255%;
   }
+}
+
+#startScreen {
+  background-color: rgb(14, 74, 44);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+#darkenBackground {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(1, 1, 1, 0.583);
+  position: absolute;
+  top: -15vh;
+  z-index: -1 !important;
+}
+
+#startScreenWrapper {
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  width: 100vw;
+  z-index: 200;
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+  visibility: visible;
+}
+
+#startScreenWrapper.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#betChipInput:focus::placeholder {
+  color: transparent;
+}
+
+#startScreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#startScreen > * > h1 {
+  color: white;
+  font-weight: 700;
+  margin-bottom: -5px;
+}
+
+#startScreen > input {
+  width: 400px;
+  text-align: center;
+}
+
+#startScreen > input::placeholder {
+  text-align: center;
+}
+
+#startScreen > button {
+  width: 300px;
+  height: 40px;
+  background-color: rgb(28, 101, 65);
+  border: 0;
+  border-radius: 20px;
+  color: white;
+  transition: 0.2s all ease-in-out;
+}
+
+#startScreen > button:hover {
+  background-color: rgb(20, 55, 37);
+}
+
+#roundResult {
+  margin-top: -100px;
+  margin-bottom: 5px;
+  color: white;
+}
+
+.scrollingNumberContainer {
+  position: relative;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: -1rem;
+}
+
+#chipCountWrapper {
+  position: relative;
+  width: fit-content;
+  height: 250px;
 }

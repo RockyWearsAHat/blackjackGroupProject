@@ -1,7 +1,5 @@
 //STORE A GLOBAL VARIABLE FOR THE DECKID SO A NEW DECK IS NOT GENERATED EVERY RELOAD
 
-
-
 const globalDeckId = sessionStorage.getItem("deckId");
 
 let gameOver = false;
@@ -241,10 +239,7 @@ const convertCardCodeToNumber = (cardCode, runningTotal = 0) => {
     case "KING":
       return 10;
     case "ACE":
-      if (runningTotal <= 10) {
-        return 11;
-      }
-      return 1;
+      return 0;
     default:
       return Number(cardCode);
   }
@@ -373,7 +368,7 @@ const calcHandTotal = async (deck = "", user = users.PLAYER) => {
       }
 
       if (handTotal == 21) {
-        console.log(`${user} has won!`);
+        // console.log(`${user} has won!`);
         elementToModify.innerHTML = ` 21`;
         gameOver = true;
         return Promise.resolve(handTotal);
@@ -381,7 +376,8 @@ const calcHandTotal = async (deck = "", user = users.PLAYER) => {
         console.log(`${user} has busted!`);
         elementToModify.innerHTML = ` ${handTotal} / BUST`;
         gameOver = true;
-        return Promise.resolve(100);
+        const otherUser = user == users.PLAYER ? users.DEALER : users.PLAYER;
+        writeNewBetAndShowRestartScreen(otherUser);
       } else {
         return Promise.resolve(showingHandTotal);
       }
@@ -394,6 +390,12 @@ const calcHandTotal = async (deck = "", user = users.PLAYER) => {
 };
 
 const startGame = async () => {
+  const dealerContainer = document.getElementById("dealer-cards-container");
+  const playerContainer = document.getElementById("player1-cards-container");
+
+  dealerContainer.innerHTML = "";
+  playerContainer.innerHTML = "";
+
   const newDeck = await getNewDeck();
 
   await shuffleDeck(newDeck, false);
@@ -415,7 +417,24 @@ const startGame = async () => {
   if (dealerRes === 21 || playerRes === 21) {
     gameOver = true;
     flipDealerHand(newDeck, true);
-    await calcHandTotal(newDeck, users.DEALER);
+    const dealerHandTotalElement = document.getElementById("dealerHandTotal");
+    const playerHandTotalElement = document.getElementById("playerHandTotal");
+    if (dealerRes === 21) {
+      dealerHandTotalElement.textContent = dealerRes + " - Blackjack, Won!";
+      // console.log("Dealer Has Blackjack, Dealer Wins");
+      playerHandTotalElement.textContent = playerRes;
+      if (playerRes === 21) {
+        playerHandTotalElement.textContent += " - Blackjack, Lost!";
+      } else {
+        playerHandTotalElement.textContent += " - Lost!";
+      }
+      writeNewBetAndShowRestartScreen(users.DEALER);
+    } else {
+      // console.log("Player Has Blackjack, Player Wins!");
+      playerHandTotalElement.textContent = playerRes + " - Blackjack, Won!";
+      dealerHandTotalElement.textContent = dealerRes + " - Lost!";
+      writeNewBetAndShowRestartScreen("", false, true);
+    }
   }
 
   const hitBtn = document.getElementById("play-again-button");
@@ -436,16 +455,39 @@ const startGame = async () => {
 
         const res = await calcHandTotal(newDeck, users.PLAYER);
 
-        console.log(res);
+        // console.log(res);
         if (res === 100) {
           flipDealerHand(newDeck, true);
           const hand = await getUserHand(newDeck, users.DEALER);
           const handVal = await hand.json();
-          console.log(handVal);
+          // console.log(handVal);
           await calcHandTotal(newDeck, users.DEALER);
+          writeNewBetAndShowRestartScreen(users.DEALER);
         } else if (res === 21) {
           flipDealerHand(newDeck, true);
-          await calcHandTotal(newDeck, users.DEALER);
+          const dealerTotal = await calcHandTotal(newDeck, users.DEALER);
+          const playerTotal = await calcHandTotal(newDeck, users.PLAYER);
+
+          const dealerHandTotalElement =
+            document.getElementById("dealerHandTotal");
+          const playerHandTotalElement =
+            document.getElementById("playerHandTotal");
+          if (dealerTotal === 21) {
+            // console.log("Dealer Blackjack, Dealer Wins");
+            playerHandTotalElement.textContent = playerTotal;
+            if (playerTotal === 21)
+              playerHandTotalElement.textContent += " - Blackjack, Lost";
+
+            dealerHandTotalElement.textContent =
+              dealerTotal + " - Blackjack, Won!";
+
+            writeNewBetAndShowRestartScreen(users.DEALER);
+          } else {
+            playerHandTotalElement.textContent =
+              playerTotal + " - Blackjack, Won!";
+            dealerHandTotalElement.textContent = dealerTotal + " - Lost!";
+            writeNewBetAndShowRestartScreen("", false, true);
+          }
         }
       }, 200);
 
@@ -457,51 +499,235 @@ const startGame = async () => {
   stayBtn.addEventListener("click", async () => {
     if (!gameOver) {
       flipDealerHand(newDeck, true);
-      await calcHandTotal(newDeck, users.DEALER);
       // vv This part is a mess, I could not figure out how to pull the value of the dealer hand total.
+
+      //very much was correct, except instead of parsing the value from the innerhtml
+      //the calcHandTotal() returns a resolved promise, so as long as it is awaited/.then chained
+      //it will return the number back which can then be assigned to a var, look at the very bottom
+      //of the calcHandTotal function to see how I did so with an async awaited function, it must return
+      //some sort of promise there will be data at that location rather than an actual value being directly passed
+
+      //looking at the innerHTML and parsing it from there generally works but in specific
+      //cases can be a little buggy, if it were a single value that is written to once then
+      //parsing from HTML would be perfect, but because these objects are dynamic and update
+      //immediatley with no pomise that the number that is there currently is the new hand total
+      //(especially if there are aces, if it is originally 11 but then deals to make the ace 1,
+      //if the last HTML value is parsed with the ace total still being 11 it could do some strange things)
+
+      //This code is very indiscript and for that I'm sorry, there isn't really any
+      //documentation or comments or anything that say this function returns a value, the only
+      //way to tell is just hovering over it and even then it just says ({...args}) => Promise<number | error>
+      //(basically, will return a promisified number or an error message) but besides that there's no definition
+      //to what the return is nor is it explicitally stated in the code anywhere.
       const dealerHandTotalElement = document.getElementById("dealerHandTotal");
-      const dealerHandTotal = parseInt(dealerHandTotalElement.innerHTML);
       const playerHandTotalElement = document.getElementById("playerHandTotal");
-      const playerHandTotal = parseInt(playerHandTotalElement.innerHTML);
-      while (dealerHandTotal < 17 && !gameOver) {
-        await drawCard(newDeck, 1, users.DEALER);
-        flipDealerHand(newDeck, true);
-        await calcHandTotal(newDeck, users.DEALER);
-        const updatedDealerHandTotal = parseInt(
-          document.getElementById("dealerHandTotal").innerHTML
-        );
-        if (updatedDealerHandTotal >= 17) {
-          break;
+      const dealerHandTotal = await calcHandTotal(newDeck, users.DEALER);
+      const playerHandTotal = await calcHandTotal(newDeck, users.PLAYER);
+      while (dealerHandTotal < 17) {
+        if (!gameOver) {
+          await drawCard(newDeck, 1, users.DEALER);
+          flipDealerHand(newDeck, true);
+          const handTotal = await calcHandTotal(newDeck, users.DEALER);
+
+          if (handTotal === 21) {
+            // console.log(
+            //   "Dealer has blackjack, no matter what the player has this is a dealer win!"
+            // );
+
+            const playerHandTot = await calcHandTotal(newDeck, users.PLAYER);
+            dealerHandTotalElement.textContent =
+              handTotal + " - Blackjack, Won!";
+            playerHandTotalElement.textContent = playerHandTot + " - Lost!";
+
+            if (playerHandTot === 21) {
+              playerHandTotalElement.textContent =
+                playerHandTot + " - Blackjack, Lost!";
+            }
+            writeNewBetAndShowRestartScreen(users.DEALER);
+          }
+          const updatedDealerHandTotal = parseInt(
+            document.getElementById("dealerHandTotal").innerHTML
+          );
+          if (updatedDealerHandTotal >= 17) {
+            break;
+          }
         }
       }
-      console.log(gameOver);
-      console.log(parseInt(dealerHandTotalElement.innerHTML));
-      console.log(playerHandTotal);
+      // console.log(gameOver);
+      // console.log(parseInt(dealerHandTotalElement.innerHTML));
+      // console.log(playerHandTotal);
       if (!gameOver) {
         let playerDif = 21 - playerHandTotal;
         let dealerDif = 21 - parseInt(dealerHandTotalElement.innerHTML);
         if (playerDif < dealerDif) {
-          console.log("player has won smaller dif");
+          // console.log("player has won smaller dif");
           playerHandTotalElement.textContent = playerHandTotal + " - Won!";
           dealerHandTotalElement.textContent =
             parseInt(dealerHandTotalElement.innerHTML) + " - Lost!";
+          writeNewBetAndShowRestartScreen(users.PLAYER);
         } else if (dealerDif < playerDif) {
-          console.log("dealer has won smaller dif");
+          // console.log("dealer has won smaller dif");
           playerHandTotalElement.textContent = playerHandTotal + " - Lost!";
           dealerHandTotalElement.textContent =
             parseInt(dealerHandTotalElement.innerHTML) + " - Won!";
+          writeNewBetAndShowRestartScreen(users.DEALER);
         } else if (dealerDif == playerDif) {
-          console.log("push");
+          // console.log("push");
           playerHandTotalElement.textContent = playerHandTotal + " - Push!";
           dealerHandTotalElement.textContent =
             parseInt(dealerHandTotalElement.innerHTML) + " - Push!";
+          writeNewBetAndShowRestartScreen(users.PLAYER, true);
         }
       }
     }
   });
 };
-// END LANDON CODE INSERT
 
-startGame();
+const parseCookie = (str) =>
+  str
+    .split(";")
+    .map((v) => v.split("="))
+    .reduce((acc, v) => {
+      acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(v[1].trim());
+      return acc;
+    }, {});
 
+const placeBetAndHideStartScreen = () => {
+  if (document.cookie) {
+    const cookie = parseCookie(document.cookie);
 
+    if (cookie["chips"] == "NaN") {
+      document.cookie = "chips=5000";
+    }
+
+    let flag = false;
+    Object.keys(cookie).forEach((key) => {
+      if (key === "chips") flag = true;
+    });
+
+    let currentChips = 0;
+    if (flag) {
+      currentChips = cookie["chips"];
+    } else {
+      document.cookie += "chips=5000";
+      currentChips = parseCookie(document.cookie)["chips"];
+    }
+  } else {
+    document.cookie += "chips=5000";
+    currentChips = parseCookie(document.cookie)["chips"];
+  }
+
+  const betEntry = document.getElementById("betChipInput");
+  const betEntryVal = betEntry.value;
+  betEntry.value = "";
+
+  const cookie = parseCookie(document.cookie);
+  // console.log(cookie["chips"]);
+  const newChipVal =
+    Number(parseCookie(document.cookie)["chips"]) - betEntryVal;
+
+  document.cookie = `chips=${newChipVal}`;
+  // console.log(parseCookie(document.cookie)["chips"]);
+
+  const currentBetSpan = document.getElementById("current-bet");
+  currentBetSpan.innerHTML = betEntryVal;
+
+  const startScreenWrapper = document.getElementById("startScreenWrapper");
+  startScreenWrapper.classList.add("hidden");
+
+  return betEntryVal;
+};
+
+const writeNewBetAndShowRestartScreen = (
+  winningUser = "",
+  push = false,
+  blackjack = false
+) => {
+  setTimeout(async () => {
+    await shuffleDeck(sessionStorage.getItem("deckId"), false);
+    const startScreenWrapper = document.getElementById("startScreenWrapper");
+    startScreenWrapper.classList.remove("hidden");
+
+    const dealerHandTotal = document.getElementById("dealerHandTotal");
+    dealerHandTotal.innerHTML = "";
+    const playerHandTotal = document.getElementById("playerHandTotal");
+    playerHandTotal.innerHTML = "";
+
+    const chipsLeft = Number(sessionStorage.getItem("remainingChips"));
+    const chipsBet = Number(sessionStorage.getItem("currentBet"));
+
+    const startScreenChipCounter = document.getElementById("startScreenChips");
+    // console.log(chipsLeft, chipsBet);
+
+    if (push) {
+      document.cookie = `chips=${chipsLeft + chipsBet}`;
+      // console.log(document.cookie);
+      sessionStorage.setItem("won", "push");
+      return;
+    } else if (blackjack) {
+      document.cookie = `chips=${chipsLeft + chipsBet * 3}`;
+      // console.log(document.cookie);
+      sessionStorage.setItem("won", "blackjack");
+      return;
+    } else if (winningUser === users.DEALER) {
+      document.cookie = `chips=${chipsLeft}`;
+      // console.log(document.cookie);
+      sessionStorage.setItem("won", "dealer");
+      return;
+    } else if (winningUser === users.PLAYER) {
+      document.cookie = `chips=${chipsLeft + chipsBet * 2}`;
+      // console.log(document.cookie);
+      sessionStorage.setItem("won", "player");
+      return;
+    }
+
+    startScreenChipCounter.innerHTML = parseCookie(document.cookie)["chips"];
+  }, 3000);
+
+  setTimeout(() => {
+    location.reload();
+  }, 3500);
+};
+
+const startGameButton = document.getElementById("startGameButton");
+
+startGameButton.addEventListener("click", async () => {
+  const chipBet = await placeBetAndHideStartScreen();
+  const remainingChips = parseCookie(document.cookie)["chips"];
+  sessionStorage.setItem("currentBet", chipBet);
+  sessionStorage.setItem("remainingChips", remainingChips);
+  startGame();
+});
+
+if (
+  parseCookie(document.cookie)["chips"] &&
+  parseCookie(document.cookie)["chips"] != "NaN"
+) {
+  document.getElementById("startScreenChips").innerHTML = parseCookie(
+    document.cookie
+  )["chips"];
+} else {
+  document.getElementById("startScreenChips").innerHTML = 5000;
+}
+
+if (sessionStorage.getItem("won")) {
+  const winCondition = sessionStorage.getItem("won");
+  const currentBet = Number(sessionStorage.getItem("currentBet"));
+  if (winCondition == "player") {
+    document.getElementById("roundResult").innerHTML = `Player has won, ${
+      currentBet * 2
+    } chips returned!`;
+  } else if (winCondition == "dealer") {
+    document.getElementById(
+      "roundResult"
+    ).innerHTML = `Dealer has won, lost ${currentBet} chips!`;
+  } else if (winCondition == "push") {
+    document.getElementById(
+      "roundResult"
+    ).innerHTML = `Push, ${currentBet} chips returned!`;
+  } else if (winCondition == "blackjack") {
+    document.getElementById("roundResult").innerHTML = `Player has won, ${
+      currentBet * 3
+    } chips returned!`;
+  }
+}
