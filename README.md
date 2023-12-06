@@ -8,7 +8,7 @@ Bootcamp Blackjack is an online training app to teach users the basics of the ga
 The app is also a great refresher tool for payers that want to 'get back in the game'. It's perfect for persons who might be preparing for that big trip to Las Vegas. It will definitely give players better odds to win! 
 
 ## Have a Look (screenshot) 
-![Screenshot of the game](URL in github)
+![Screenshot of the game]((rouse-assets/images/blackjack-screenshot.png))
 
 ## Rules of the Game
 
