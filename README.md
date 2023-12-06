@@ -9,7 +9,7 @@ The app is also a great refresher tool for payers that want to 'get back in the 
 
 ## Have a Look (screenshot) 
 
-![Screenshot of the game]((rouse-assets/images/readme-screenshot.png))
+![Screenshot of the game](rouse-assets/images/readme-screenshot.png)
 
 
 ## Rules of the Game
