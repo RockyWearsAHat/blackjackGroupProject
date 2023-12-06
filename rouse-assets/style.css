@@ -81,6 +81,7 @@ main {
 }
 
 .playingCard {
+  margin-top: 2vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -111,6 +112,8 @@ main {
 #modal-button {
   height: 10%;
   color: white;
+  text-align: center;
+  width: 40vw;
 }
 
 /* FOOTER ELEMENTS */
@@ -138,10 +141,11 @@ footer {
   height: 8.5vh;
   width: 20vw;
   font-size: 4vw;
+  z-index: 100;
 }
 
-#deal-btn:hover::after {
-  content: "Deal another card to the player";
+#play-again-button:hover::after {
+  content: "Hitting will deal another card to your hand.";
   position: absolute;
   left: 0px;
   bottom: 24px;
@@ -155,8 +159,8 @@ footer {
   z-index: 1;
 }
 
-#end-btn:hover::after {
-  content: "Stand at current hand, dealer will attempt to reach 17 or above";
+#end-game-button:hover::after {
+  content: "Standing will force the dealer to draw until his hand total is 17 or greater.";
   position: absolute;
   right: 0px;
   bottom: 24px;
@@ -178,6 +182,7 @@ footer > * {
 footer {
   z-index: 200;
 }
+
 @media screen and (orientation: portrait) {
   header {
     background-image: url(../rouse-assets/images/table-background.jpg);
@@ -216,8 +221,9 @@ footer {
   .cards-container {
     height: 80%;
   }
-  .playingCard {
-    height: 100%;
+
+  .playingCard{
+    height: 90%;
   }
   .playingCard > img {
     height: 100%;
@@ -240,7 +246,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 550px) {
   header {
     background-size: 255%;
   }
