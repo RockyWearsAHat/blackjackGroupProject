@@ -247,7 +247,7 @@ footer {
 }
 
 #startScreen {
-  background-color: red;
+  background-color: rgb(14, 74, 44);
   width: 100%;
   height: 100%;
   position: absolute;
@@ -262,17 +262,66 @@ footer {
 }
 
 #startScreenWrapper {
+  display: flex;
+  align-self: center;
+  justify-self: center;
   width: 100vw;
   z-index: 200;
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+  visibility: visible;
+}
+
+#startScreenWrapper.hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 
 #betChipInput:focus::placeholder {
   color: transparent;
 }
 
-#startScreen > h1 {
+#startScreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#startScreen > * > h1 {
   color: white;
   font-weight: 700;
+  margin-bottom: -5px;
+}
+
+#startScreen > input {
+  width: 400px;
+  text-align: center;
+}
+
+#startScreen > input::placeholder {
+  text-align: center;
+}
+
+#startScreen > button {
+  width: 300px;
+  height: 40px;
+  background-color: rgb(28, 101, 65);
+  border: 0;
+  border-radius: 20px;
+  color: white;
+  transition: 0.2s all ease-in-out;
+}
+
+#startScreen > button:hover {
+  background-color: rgb(20, 55, 37);
+}
+
+#roundResult {
+  margin-top: -100px;
+  margin-bottom: 5px;
+  color: white;
 }
 
 .scrollingNumberContainer {
